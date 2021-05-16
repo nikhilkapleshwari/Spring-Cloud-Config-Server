@@ -1,0 +1,13 @@
+replicaCount: 1
+image:
+  repository: "nikhil1632"
+  name: "spring-cloud-config-server"
+  tag: "latest"
+component:
+  value: "backend"
+  pullPolicy: Always
+service:
+  type: NodePort
+  port: 3041
+  targetPort: 9161
+  nodePort: 30021

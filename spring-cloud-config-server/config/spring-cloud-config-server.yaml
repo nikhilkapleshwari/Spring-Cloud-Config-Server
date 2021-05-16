@@ -1,0 +1,14 @@
+myconfig.msg: Hello world and updated!!!!
+myconfig.timeout: 120
+
+order:
+  urlprofiles:
+    -
+      name: bookOrder
+      url: http://ORDER-SERVICE/order/bookOrder/
+      ttl: 25
+    -
+      name: payment
+      url: http://-SERVICE/order/bookOrder/
+      ttl: 10  
+  msg: order msg updated...

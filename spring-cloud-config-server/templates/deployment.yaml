@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-cloud-config-server-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      component: {{ .Values.component.value }}
+  template:
+    metadata:
+      labels:
+        component: {{ .Values.component.value }}
+    spec:
+      containers:
+        - name: spring-cloud-config-server
+          image: {{ .Values.image.repository }}/{{ .Values.image.name }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 9161
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spring-cloud-config-server
+data:
+  spring-cloud-config-server.yaml: {{ tpl (.Files.Get "config/spring-cloud-config-server.yaml") . | quote }}
+
+

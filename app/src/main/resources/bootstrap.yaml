@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+        sources:
+          - namespace: microservice
+            name: spring-cloud-config-server
+      reload:
+        enabled: true
+        mode: event
+        strategy: refresh
+
+server:
+  port: 9161
