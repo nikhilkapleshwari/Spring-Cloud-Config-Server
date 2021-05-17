@@ -1,14 +1,37 @@
 myconfig.msg: Hello world and updated!!!!
 myconfig.timeout: 120
 
-order:
-  urlprofiles:
-    -
-      name: bookOrder
-      url: http://ORDER-SERVICE/order/bookOrder/
-      ttl: 25
-    -
-      name: payment
-      url: http://-SERVICE/order/bookOrder/
-      ttl: 10  
-  msg: order msg updated...
+microservice:
+  order:
+    urlprofiles:
+      -
+        name: bookOrder
+        url: http://ORDER-SERVICE/order/bookOrder/
+        ttl: 25
+      -
+        name: payment
+        url: http://PAYMENT-SERVICE/payment
+        ttl: 20  
+    msg: order msg updated...
+
+global:
+  microservice:
+    profileList:
+      -
+        id: order-service1
+        urlList:
+          -
+            name: bookOrder
+            url: http://ORDER-SERVICE/order/bookOrder/
+            ttl: 35
+          -
+            name: payment
+            url: http://PAYMENT-SERVICE/makePayment
+            ttl: 40
+      -
+        id: payment-service
+        urlList:
+          -
+            name: payment-gateway
+            url: http://PAYMENT-SERVICE/order/processPayment
+            ttl: 50
